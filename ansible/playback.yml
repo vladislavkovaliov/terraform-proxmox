@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+  vars_prompt:
+    # Need to use password instead of ssh key
+    - name: ansible_ssh_passs
+      private: yes
+  tasks:
+    - name: Install nginx
+      apk:
+        name: nginx
+        state: latest
+        update_cache: yes
